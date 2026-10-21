@@ -32,4 +32,6 @@ Wer hier mit Claude Code arbeitet, ist meist keine Programmiererin. Deshalb:
 - Statische Seite ohne Datenbank. Hosting: hosttech Webhosting mit Plesk, FTP 181.hosttech.eu, Webordner `web`, kein SSH.
 - Zugangsdaten stehen nur lokal in `.deploy.env` (nicht im GitHub).
 - Code liegt privat auf GitHub: quakediquak/kulturpunkt-website.
+  Anmeldung per classic-Schlüssel im Mac-Schlüsselbund. Scheitert `git push`, ist er meist abgelaufen:
+  Anleitung in README.md («GitHub-Anmeldung») – `git push` muss die Nutzerin im Terminal-Programm machen.
 - Falls `./deploy.sh` scheitert: Dateien aus `site/` im Plesk-Dateimanager in den Ordner `web` hochladen.
