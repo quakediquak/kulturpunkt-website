@@ -267,6 +267,7 @@ footer a{color:var(--paper)}
   </div>
 </footer>
 
+<script src="programm.js"></script>
 <script>
 const MON=["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"],WD=["So","Mo","Di","Mi","Do","Fr","Sa"];
 const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
@@ -275,11 +276,10 @@ const now=new Date();now.setHours(0,0,0,0);
 const thu=[];const d=new Date(now);while(d.getDay()!==4)d.setDate(d.getDate()+1);
 for(let i=0;i<3;i++){thu.push({typ:"bar",datum:iso(d),zeit:"17:00",titel:"Herzlich willkommen!",text:"Offener Abend an der Bar",preis:"Eintritt frei"});d.setDate(d.getDate()+7)}
 document.getElementById("next-thu").textContent="Nächstes Mal: Donnerstag, "+new Date(thu[0].datum).toLocaleDateString("de-CH",{day:"numeric",month:"long"});
-const PAST=[
-  {typ:"konzert",datum:"2026-06-20",zeit:"09:00",titel:"StimmSaiten zelebrieren den Frühklang",text:"Interaktive Performance für Gross und Klein, mit Helen Prates de Matos",preis:"Kollekte"},
-  {typ:"bar",datum:"2026-05-22",zeit:"17:00",titel:"Den Kulturpunkt kann man mieten!",text:"Tag der offenen Tür für Vermietungen",preis:"–"},
-  {typ:"bar",datum:"2026-04-30",zeit:"17:00",titel:"Herzlich willkommen!",text:"Offener Abend an der Bar",preis:"Eintritt frei"}
-];
+const HEUTE=iso(now);
+const DATEN=(typeof PROGRAMM!=="undefined"?PROGRAMM:[]);
+const PAST=DATEN.filter(e=>e.datum<HEUTE).sort((a,b)=>a.datum<b.datum?1:-1);
+const KOMMEND=DATEN.filter(e=>e.datum>=HEUTE);
 let filter="alle";
 function li(e,past){
   const x=new Date(e.datum),el=document.createElement("li");
@@ -291,7 +291,7 @@ function li(e,past){
 }
 function render(){
   const up=document.getElementById("events");up.innerHTML="";
-  const liste=[...thu].sort((a,b)=>a.datum<b.datum?-1:1).filter(e=>filter==="alle"||e.typ===filter);
+  const liste=[...thu,...KOMMEND].sort((a,b)=>a.datum<b.datum?-1:1).filter(e=>filter==="alle"||e.typ===filter);
   liste.forEach(e=>up.appendChild(li(e,false)));
   if(!liste.length){const x=document.createElement("li");x.className="ev";x.innerHTML='<div></div><p>Die nächsten Konzerte werden bald bekannt gegeben.</p>';up.appendChild(x)}
   const pa=document.getElementById("past");pa.innerHTML="";PAST.forEach(e=>pa.appendChild(li(e,true)));
