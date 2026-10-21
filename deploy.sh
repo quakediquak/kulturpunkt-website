@@ -1,10 +1,17 @@
 #!/bin/bash
-# Lädt die Website auf das hosttech-Webhosting hoch.
-# Zugangsdaten stehen in .deploy.env (wird nicht ins GitHub übertragen).
+# Lädt die Website per FTP auf das hosttech-Webhosting (Ordner aus .deploy.env, z. B. web).
+# Anmeldung verschlüsselt, Datenübertragung unverschlüsselt (Server lehnt verschlüsselte Uploads ab).
 set -e
 cd "$(dirname "$0")"
 [ -f .deploy.env ] || { echo "Bitte zuerst .deploy.env anlegen (Vorlage: deploy.env.beispiel)"; exit 1; }
 source .deploy.env
-echo "Lade site/ nach $SFTP_USER@$SFTP_HOST:$ZIELORDNER hoch ..."
-scp -P "${SFTP_PORT:-22}" -r site/* "$SFTP_USER@$SFTP_HOST:$ZIELORDNER/"
-echo "Fertig. Prüfen: https://kulturpunkt-flawil.ch"
+ZO="${ZIELORDNER#/}"; ZO="${ZO%/}"
+read -s -p "FTP-Passwort für $SFTP_USER: " PW; echo
+NETRC=$(mktemp); chmod 600 "$NETRC"
+printf "machine %s login %s password %s\n" "$SFTP_HOST" "$SFTP_USER" "$PW" > "$NETRC"
+trap 'rm -f "$NETRC"' EXIT
+for f in index.html .htaccess; do
+  curl -s -S --netrc-file "$NETRC" --ftp-ssl-control --ftp-pasv -T "site/$f" "ftp://$SFTP_HOST/$ZO/$f"
+  echo "  hochgeladen: $f"
+done
+echo "Fertig. Prüfen: https://kulturpunkt-flawil.ch (Cmd+Shift+R)"

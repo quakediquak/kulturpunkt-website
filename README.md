@@ -4,7 +4,8 @@ Neue Website für den Kulturpunkt Flawil (kulturpunkt-flawil.ch).
 
 ## Ordner
 - `site/` – die Website
-- `deploy.sh` – lädt `site/` aufs hosttech-Webhosting
+- `deploy.sh` – lädt `site/` per FTP aufs hosttech-Webhosting (Ordner `web`)
+- `golive-ftp.sh` – einmalige Umstellung von der alten Drupal-Seite (erledigt am 21.10.2026, alte Seite liegt auf dem Server in `_drupal-alt-2026-10-21`)
 - `backup-alte-seite.sh` – sichert eine Kopie der alten Website
 - `Dockerfile`, `docker-compose.yml` – nur für die lokale Vorschau
 
@@ -21,3 +22,7 @@ Neue Website für den Kulturpunkt Flawil (kulturpunkt-flawil.ch).
 ## GitHub
 Repository: https://github.com/quakediquak/kulturpunkt-website (privat)
 Auf einem neuen Mac holen: `git clone https://github.com/quakediquak/kulturpunkt-website.git`
+
+## Server
+hosttech Webhosting mit Plesk, FTP-Server 181.hosttech.eu, Webordner `web`. Kein SSH.
+Falls `deploy.sh` scheitert: im Plesk-Dateimanager `site/index.html` in den Ordner `web` hochladen.

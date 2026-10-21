@@ -1,0 +1,6 @@
+# Kulturpunkt Flawil – neue Website
+DirectoryIndex index.html
+RewriteEngine On
+# Alte Drupal-Adressen (z. B. /de/programm) auf die neue Startseite umleiten
+RewriteRule ^(de|en|fr)(/.*)?$ / [R=301,L]
+RewriteRule ^node/.*$ / [R=301,L]

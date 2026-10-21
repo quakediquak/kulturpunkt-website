@@ -158,18 +158,6 @@ footer a{color:var(--paper)}
       </div>
       <ul class="events" id="events"></ul>
 
-      <div class="panel" id="tickets" hidden aria-labelledby="tix-t">
-        <span class="label">Tickets · Vorschau</span>
-        <h3 id="tix-t">Beispiel-Konzert</h3>
-        <div class="row">
-          <div class="field"><label for="t-kat">Kategorie</label>
-            <select id="t-kat"><option value="30">Normal · CHF 30</option><option value="25">Mitglieder · CHF 25</option><option value="15">Jugendliche / Legi · CHF 15</option></select></div>
-          <div class="field"><label for="t-anz">Anzahl</label><input id="t-anz" type="number" min="1" max="10" value="2"></div>
-        </div>
-        <div class="total" id="t-total">CHF 60.–</div>
-        <button class="btn" id="t-ok" type="button">Weiter zur Bezahlung</button>
-        <p class="note" id="t-msg">So könnte der Vorverkauf aussehen. Preise und Kategorien sind Platzhalter, bezahlt wird in dieser Version noch nichts.</p>
-      </div>
     </div>
   </section>
 
@@ -229,7 +217,7 @@ footer a{color:var(--paper)}
             <div class="field"><label for="m-mail">E-Mail</label><input id="m-mail" type="email" autocomplete="email" required></div>
           </div>
           <div class="field"><label for="m-text">Bemerkungen</label><textarea id="m-text"></textarea></div>
-          <button class="btn" type="submit">Anfrage prüfen</button>
+          <button class="btn" type="submit">Anfrage per E-Mail senden</button>
           <p class="note" id="m-msg" hidden></p>
         </form>
         <div class="person">
@@ -287,7 +275,6 @@ const now=new Date();now.setHours(0,0,0,0);
 const thu=[];const d=new Date(now);while(d.getDay()!==4)d.setDate(d.getDate()+1);
 for(let i=0;i<3;i++){thu.push({typ:"bar",datum:iso(d),zeit:"17:00",titel:"Herzlich willkommen!",text:"Offener Abend an der Bar",preis:"Eintritt frei"});d.setDate(d.getDate()+7)}
 document.getElementById("next-thu").textContent="Nächstes Mal: Donnerstag, "+new Date(thu[0].datum).toLocaleDateString("de-CH",{day:"numeric",month:"long"});
-const SAMPLE={typ:"konzert",datum:iso(new Date(now.getTime()+16*864e5)),zeit:"20:00",titel:"Beispiel-Konzert",text:"Platzhalter: So erscheint ein Konzert mit Vorverkauf",preis:"ab CHF 15",tickets:true,sample:true};
 const PAST=[
   {typ:"konzert",datum:"2026-06-20",zeit:"09:00",titel:"StimmSaiten zelebrieren den Frühklang",text:"Interaktive Performance für Gross und Klein, mit Helen Prates de Matos",preis:"Kollekte"},
   {typ:"bar",datum:"2026-05-22",zeit:"17:00",titel:"Den Kulturpunkt kann man mieten!",text:"Tag der offenen Tür für Vermietungen",preis:"–"},
@@ -304,23 +291,22 @@ function li(e,past){
 }
 function render(){
   const up=document.getElementById("events");up.innerHTML="";
-  [...thu,SAMPLE].sort((a,b)=>a.datum<b.datum?-1:1).filter(e=>filter==="alle"||e.typ===filter).forEach(e=>up.appendChild(li(e,false)));
+  const liste=[...thu].sort((a,b)=>a.datum<b.datum?-1:1).filter(e=>filter==="alle"||e.typ===filter);
+  liste.forEach(e=>up.appendChild(li(e,false)));
+  if(!liste.length){const x=document.createElement("li");x.className="ev";x.innerHTML='<div></div><p>Die nächsten Konzerte werden bald bekannt gegeben.</p>';up.appendChild(x)}
   const pa=document.getElementById("past");pa.innerHTML="";PAST.forEach(e=>pa.appendChild(li(e,true)));
 }
 render();
 document.querySelectorAll("[data-f]").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.f;document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",x===b));render()}));
-const tp=document.getElementById("tickets");
-document.addEventListener("click",ev=>{if(!ev.target.closest("[data-tix]"))return;tp.hidden=false;tp.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"})});
-function tot(){const n=Math.max(1,+document.getElementById("t-anz").value||1),p=+document.getElementById("t-kat").value;document.getElementById("t-total").textContent=`CHF ${n*p}.–`}
-document.getElementById("t-anz").addEventListener("input",tot);document.getElementById("t-kat").addEventListener("change",tot);
-document.getElementById("t-ok").addEventListener("click",()=>{document.getElementById("t-msg").textContent="Vorschau: Hier folgt später die Zahlung (z. B. TWINT oder Karte). Danach kommt das Ticket als QR-Code per E-Mail."});
 document.getElementById("miete").addEventListener("submit",ev=>{
   ev.preventDefault();const msg=document.getElementById("m-msg");msg.hidden=false;
   const v=id=>document.getElementById(id).value.trim();
   if(!v("m-datum")||!v("m-name")||!v("m-mail")){msg.textContent="Bitte Wunschdatum, Name und E-Mail ausfüllen.";return}
   const extra=[["x-pers","Personal"],["x-rein","Reinigung"],["x-ton","Technik"]].filter(([id])=>document.getElementById(id).checked).map(x=>x[1]);
   const dt=new Date(v("m-datum")).toLocaleDateString("de-CH",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
-  msg.textContent=`${v("m-art")} am ${dt} (${v("m-zeit").toLowerCase()}), ${v("m-pers")} Personen${extra.length?", mit "+extra.join(", "):""}. In der fertigen Website geht die Anfrage direkt an Patricia Jagodic.`;
+  const body=`Anlass: ${v("m-art")}\nWunschdatum: ${dt} (${v("m-zeit")})\nPersonen: ${v("m-pers")}\nZusätzlich: ${extra.join(", ")||"–"}\n\n${v("m-text")}\n\n${v("m-name")}\n${v("m-mail")}`;
+  location.href="mailto:info@kulturpunkt-flawil.ch?subject="+encodeURIComponent("Mietanfrage "+v("m-art")+" – "+dt)+"&body="+encodeURIComponent(body);
+  msg.textContent="Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Falls nicht: Bitte schreiben Sie an info@kulturpunkt-flawil.ch oder rufen Sie Patricia Jagodic an, 078 903 07 59.";
 });
 </script>
 </body></html>
