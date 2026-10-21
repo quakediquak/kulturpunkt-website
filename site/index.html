@@ -1,0 +1,326 @@
+<!doctype html><html lang="de-CH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kulturpunkt Flawil</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Figtree:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: Tropfenform aus dem Logo (runde Ecken, eine eckig) als Leitmotiv, Kleinschreibung wie im Logo, Tabellen mit echten m²-Werten */
+:root{
+  --paper:#FFFFFF; --soft:#EEF6F6; --ink:#132322; --muted:#566968;
+  --line:#D6E4E3; --brand:#0FB3AF; --on-brand:#0F2524; --accent:#0A7F7C; --on-accent:#FFFFFF;
+  --display:"Nunito", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0E1717; --soft:#172323; --ink:#E9F3F2; --muted:#9DB3B1;
+  --line:#263534; --brand:#0FB3AF; --on-brand:#0F2524; --accent:#3FD3CE; --on-accent:#0E1717; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0E1717; --soft:#172323; --ink:#E9F3F2; --muted:#9DB3B1;
+  --line:#263534; --brand:#0FB3AF; --on-brand:#0F2524; --accent:#3FD3CE; --on-accent:#0E1717; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:3px}
+h1,h2,h3{font-family:var(--display);font-weight:900;line-height:1;text-wrap:balance;margin:0;letter-spacing:-.025em}
+.label{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--paper);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:12px 24px;padding-block:12px;flex-wrap:wrap}
+.logo{text-decoration:none;color:var(--ink);font-family:var(--display);font-weight:900;font-size:1.25rem;line-height:.95;display:flex;align-items:center;gap:10px;letter-spacing:-.02em}
+.logo svg{width:34px;height:34px;flex:none}
+.logo span{color:var(--accent)}
+nav{display:flex;gap:4px 20px;flex-wrap:wrap;margin-left:auto}
+nav a{color:var(--ink);text-decoration:none;font-weight:700;padding-block:4px;border-bottom:2px solid transparent}
+nav a:hover{border-color:var(--accent)}
+
+.hero{padding-block:48px 40px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:end}
+.hero h1{font-size:clamp(3.4rem,10vw,7.4rem);font-weight:900;letter-spacing:-.045em;line-height:.95}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .sub{font-size:1.2rem;max-width:34ch;margin:18px 0 0}
+.open{background:var(--brand);color:var(--on-brand);padding:32px 32px 36px;display:grid;gap:8px;border-radius:56px 56px 56px 0}
+.open .label{color:inherit;opacity:.85}
+.open h2{font-size:2.4rem}
+.open p{margin:0}
+.btn{font:inherit;font-weight:700;display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--on-accent);border:0;padding:11px 22px;cursor:pointer;text-decoration:none;justify-self:start;border-radius:999px 999px 999px 0}
+.btn.inv{background:var(--on-accent);color:var(--accent)}
+.btn.line{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+
+section.band{padding-block:60px;border-top:1px solid var(--line)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.head h2,.big{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:900}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:inherit;font-size:.88rem;font-weight:700;background:var(--paper);color:var(--ink);border:2px solid var(--line);padding:5px 14px;cursor:pointer;border-radius:999px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+.events{list-style:none;margin:0;padding:0}
+.ev{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:24px;align-items:center;padding-block:18px;border-bottom:1px solid var(--line)}
+.d{font-family:var(--display);line-height:.9;font-variant-numeric:tabular-nums}
+.d small{display:block;font-size:1rem;font-weight:800;color:var(--accent)}
+.d b{display:block;font-size:3rem;font-weight:900}
+.d span{font-size:1rem;font-weight:700}
+.ev h3{font-size:1.9rem;font-weight:800}
+.ev p{margin:4px 0 0;color:var(--muted)}
+.tag{display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.price{font-weight:700;white-space:nowrap}
+.ev.sample{background:repeating-linear-gradient(-45deg,transparent 0 12px,var(--soft) 12px 24px);padding-inline:12px}
+.ev.past .d b,.ev.past .d small{color:var(--muted)}
+
+.panel{background:var(--soft);padding:28px;border-radius:32px 32px 32px 0;display:grid;gap:16px;margin-top:20px}
+.panel h3{font-size:2rem}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.field{display:grid;gap:4px}
+.field label{font-weight:700;font-size:.92rem}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--paper);border:2px solid var(--line);border-radius:2px;padding:9px 12px;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none}
+textarea{min-height:96px;resize:vertical}
+.note{background:var(--paper);border-left:4px solid var(--accent);padding:10px 14px;font-size:.95rem;margin:0}
+.total{font-family:var(--display);font-size:2rem;font-weight:800;font-variant-numeric:tabular-nums}
+
+.room{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.keys{display:flex;gap:28px;flex-wrap:wrap;margin:20px 0}
+.keys div{font-family:var(--display);line-height:1}
+.keys b{display:block;font-size:3.4rem;font-weight:900;color:var(--accent)}
+.keys span{font-weight:700;font-size:1rem;color:var(--muted)}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 0;border-bottom:1px solid var(--line)}
+td:last-child,th:last-child{text-align:right}
+th{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.uses{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0;padding:0;list-style:none}
+.uses li{border:1.5px solid var(--line);padding:2px 10px;font-size:.9rem;font-weight:600}
+.person{display:grid;gap:2px;margin-top:8px}
+
+.verein{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.verein h3{font-size:1.9rem;margin-bottom:8px}
+.verein p{margin:0 0 12px}
+
+footer{background:var(--ink);color:var(--paper);padding-block:44px}
+footer .cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+footer .label{color:var(--brand)}
+footer p{margin:6px 0 0}
+footer a{color:var(--paper)}
+
+@media (max-width:860px){
+  .hero,.room{grid-template-columns:minmax(0,1fr)}
+  .verein{grid-template-columns:minmax(0,1fr)}
+  footer .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  nav{margin-left:0;width:100%}
+}
+@media (max-width:560px){
+  .ev{grid-template-columns:64px minmax(0,1fr);gap:14px}
+  .ev .act{grid-column:2;justify-self:start}
+  .d b{font-size:2.2rem}
+  .row{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+<style>body{margin:0}</style></head><body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M0 100V50A50 50 0 1 1 50 100Z" fill="#0FB3AF"/></svg><div>kulturpunkt<br><span>flawil</span></div></a>
+    <nav aria-label="Hauptnavigation">
+      <a href="#programm">Programm</a>
+      <a href="#mieten">Vermietung</a>
+      <a href="#verein">Verein</a>
+      <a href="#archiv">Archiv</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <p class="label">St.Gallerstrasse 13 · Flawil</p>
+      <h1>klein<br>aber <em>oho!</em></h1>
+      <p class="sub">Musik aus aller Welt auf einer kleinen Bühne mitten in Flawil.</p>
+    </div>
+    <div class="open">
+      <span class="label">Jeden Donnerstag</span>
+      <h2>bar offen ab 17 uhr</h2>
+      <p>Ankommen, etwas trinken, Leute treffen. Eintritt frei.</p>
+      <p id="next-thu" style="font-weight:700"></p>
+    </div>
+  </div>
+
+  <section class="band" id="programm" aria-labelledby="prog-t">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="prog-t">Programm</h2>
+        <div class="filters" role="group" aria-label="Programm filtern">
+          <button class="chip" type="button" aria-pressed="true" data-f="alle">Alle</button>
+          <button class="chip" type="button" aria-pressed="false" data-f="konzert">Konzerte</button>
+          <button class="chip" type="button" aria-pressed="false" data-f="bar">Offener Abend</button>
+        </div>
+      </div>
+      <ul class="events" id="events"></ul>
+
+      <div class="panel" id="tickets" hidden aria-labelledby="tix-t">
+        <span class="label">Tickets · Vorschau</span>
+        <h3 id="tix-t">Beispiel-Konzert</h3>
+        <div class="row">
+          <div class="field"><label for="t-kat">Kategorie</label>
+            <select id="t-kat"><option value="30">Normal · CHF 30</option><option value="25">Mitglieder · CHF 25</option><option value="15">Jugendliche / Legi · CHF 15</option></select></div>
+          <div class="field"><label for="t-anz">Anzahl</label><input id="t-anz" type="number" min="1" max="10" value="2"></div>
+        </div>
+        <div class="total" id="t-total">CHF 60.–</div>
+        <button class="btn" id="t-ok" type="button">Weiter zur Bezahlung</button>
+        <p class="note" id="t-msg">So könnte der Vorverkauf aussehen. Preise und Kategorien sind Platzhalter, bezahlt wird in dieser Version noch nichts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="mieten" aria-labelledby="miet-t">
+    <div class="wrap room">
+      <div>
+        <p class="label">Vermietung</p>
+        <h2 id="miet-t" class="big">Der Kulturpunkt für Ihren Anlass</h2>
+        <p>Frisch renoviert und zu moderaten Preisen. Der Erlös fliesst ins Kulturbudget des Vereins.</p>
+        <div class="keys">
+          <div><b>100</b><span>Personen im Konzertsaal</span></div>
+          <div><b>69 m²</b><span>Saal + 9 m² Bühne</span></div>
+          <div><b>60 m²</b><span>Aussenbereich</span></div>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Raum</th><th>Fläche</th></tr></thead>
+            <tbody>
+              <tr><td>Eingang &amp; Bar</td><td>29 m²</td></tr>
+              <tr><td>Konzertsaal</td><td>69 m²</td></tr>
+              <tr><td>Bühne</td><td>9.25 m²</td></tr>
+              <tr><td>Galerie</td><td>18 m²</td></tr>
+              <tr><td>Dachgeschoss mit kleiner Küche</td><td>47 m²</td></tr>
+              <tr><td>Foyer &amp; Toiletten</td><td>13 m²</td></tr>
+              <tr><td>Aussenbereich</td><td>60 m²</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:18px"><strong>Ausstattung:</strong> Ton- und Konzertanlage, Beamer und Leinwand, Funkmikrofon, Lichtanlage, Bar mit Kühlbuffet und Geschirrspüler, Tische und Lounge-Möbel. Auf Wunsch Personal und Reinigung.</p>
+        <ul class="uses" aria-label="Geeignet für">
+          <li>Hochzeiten</li><li>Geburtstage</li><li>Sitzungen</li><li>Seminare &amp; Kurse</li><li>Vorträge</li><li>Konzerte</li><li>Aufnahmen</li><li>Firmenanlässe</li><li>Apéros</li><li>Bandproben</li>
+        </ul>
+        <p style="margin-top:18px"><a href="https://360.swiss360-media.ch/tours/29TFb1s3U_PH?disable=sound%2Crequest%2Ccontrols%2Cleadgen%2Cfloorplan">360°-Rundgang öffnen ↗</a></p>
+      </div>
+
+      <div class="panel" style="margin-top:0">
+        <h3>Verfügbarkeit anfragen</h3>
+        <form id="miete" novalidate>
+          <div class="row">
+            <div class="field"><label for="m-datum">Wunschdatum</label><input id="m-datum" type="date" required></div>
+            <div class="field"><label for="m-zeit">Zeitraum</label>
+              <select id="m-zeit"><option>Nachmittag</option><option>Abend</option><option>Ganzer Tag</option><option>Wochenende</option></select></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="m-art">Anlass</label>
+              <select id="m-art"><option>Private Feier</option><option>Hochzeit</option><option>Sitzung / Seminar</option><option>Konzert / Aufnahme</option><option>Firmenanlass</option><option>Anderes</option></select></div>
+            <div class="field"><label for="m-pers">Personen</label><input id="m-pers" type="number" min="1" max="100" value="40"></div>
+          </div>
+          <fieldset style="border:0;padding:0;margin:0;display:grid;gap:6px">
+            <legend class="field" style="font-weight:700;font-size:.92rem;padding:0;margin-bottom:6px">Zusätzlich gewünscht</legend>
+            <label><input type="checkbox" id="x-pers" style="width:auto"> Personal</label>
+            <label><input type="checkbox" id="x-rein" style="width:auto"> Reinigung</label>
+            <label><input type="checkbox" id="x-ton" style="width:auto"> Ton- und Lichttechnik</label>
+          </fieldset>
+          <div class="row">
+            <div class="field"><label for="m-name">Name</label><input id="m-name" autocomplete="name" required></div>
+            <div class="field"><label for="m-mail">E-Mail</label><input id="m-mail" type="email" autocomplete="email" required></div>
+          </div>
+          <div class="field"><label for="m-text">Bemerkungen</label><textarea id="m-text"></textarea></div>
+          <button class="btn" type="submit">Anfrage prüfen</button>
+          <p class="note" id="m-msg" hidden></p>
+        </form>
+        <div class="person">
+          <span class="label">Ansprechperson Vermietung</span>
+          <strong>Patricia Jagodic</strong>
+          <span>078 903 07 59 · info@kulturpunkt-flawil.ch</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="verein" aria-labelledby="ver-t">
+    <div class="wrap">
+      <div class="head"><h2 id="ver-t">Zusammen Kultur fördern</h2></div>
+      <div class="verein">
+        <div>
+          <h3>Mitglied werden</h3>
+          <p>Mitglieder tragen das Programm mit und erhalten regelmässig News zu Anlässen und Verein. Zum Start gibt es einen Getränkebon im Wert von 5 × CHF 2.</p>
+          <a class="btn line" href="#kontakt">Mitglied werden</a>
+        </div>
+        <div>
+          <h3>Bandraum &amp; Projekte</h3>
+          <p>Im Kulturpunkt proben Bands, Projektgruppen entwickeln eigene Formate, dazu kommt die Reihe «No live but life».</p>
+        </div>
+        <div>
+          <h3>Anreise</h3>
+          <p>Flawil liegt an der Bahnlinie Zürich–St.Gallen: 10 Minuten ab St.Gallen, 20 ab Winterthur. Mit dem Auto ab A1 Ausfahrt Uzwil oder Gossau, rund 5 Minuten.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="archiv" aria-labelledby="arc-t">
+    <div class="wrap">
+      <div class="head"><h2 id="arc-t">Archiv</h2></div>
+      <ul class="events" id="past"></ul>
+    </div>
+  </section>
+</main>
+
+<footer id="kontakt">
+  <div class="wrap cols">
+    <div><div class="label">Adresse</div><p>Kulturpunkt Flawil<br>St.Gallerstrasse 13<br>9230 Flawil</p></div>
+    <div><div class="label">Telefon</div><p>+41 79 224 82 88</p></div>
+    <div><div class="label">Vermietung</div><p>Patricia Jagodic<br>078 903 07 59<br>info@kulturpunkt-flawil.ch</p></div>
+    <div><div class="label">Newsletter</div><p>Programm per E-Mail erhalten</p><p><a href="https://stimmsaiten.ch/">Partner: StimmSaiten ↗</a></p></div>
+  </div>
+</footer>
+
+<script>
+const MON=["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"],WD=["So","Mo","Di","Mi","Do","Fr","Sa"];
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const now=new Date();now.setHours(0,0,0,0);
+// Kommende Donnerstage (offener Abend, laut bisheriger Website jede Woche)
+const thu=[];const d=new Date(now);while(d.getDay()!==4)d.setDate(d.getDate()+1);
+for(let i=0;i<3;i++){thu.push({typ:"bar",datum:iso(d),zeit:"17:00",titel:"Herzlich willkommen!",text:"Offener Abend an der Bar",preis:"Eintritt frei"});d.setDate(d.getDate()+7)}
+document.getElementById("next-thu").textContent="Nächstes Mal: Donnerstag, "+new Date(thu[0].datum).toLocaleDateString("de-CH",{day:"numeric",month:"long"});
+const SAMPLE={typ:"konzert",datum:iso(new Date(now.getTime()+16*864e5)),zeit:"20:00",titel:"Beispiel-Konzert",text:"Platzhalter: So erscheint ein Konzert mit Vorverkauf",preis:"ab CHF 15",tickets:true,sample:true};
+const PAST=[
+  {typ:"konzert",datum:"2026-06-20",zeit:"09:00",titel:"StimmSaiten zelebrieren den Frühklang",text:"Interaktive Performance für Gross und Klein, mit Helen Prates de Matos",preis:"Kollekte"},
+  {typ:"bar",datum:"2026-05-22",zeit:"17:00",titel:"Den Kulturpunkt kann man mieten!",text:"Tag der offenen Tür für Vermietungen",preis:"–"},
+  {typ:"bar",datum:"2026-04-30",zeit:"17:00",titel:"Herzlich willkommen!",text:"Offener Abend an der Bar",preis:"Eintritt frei"}
+];
+let filter="alle";
+function li(e,past){
+  const x=new Date(e.datum),el=document.createElement("li");
+  el.className="ev"+(past?" past":"")+(e.sample?" sample":"");
+  el.innerHTML=`<div class="d"><small>${WD[x.getDay()]}</small><b>${String(x.getDate()).padStart(2,"0")}</b><span>${MON[x.getMonth()]}${past?" "+x.getFullYear():""}</span></div>
+  <div><span class="tag">${e.typ==="konzert"?"Konzert":"Offener Abend"} · ${e.zeit} Uhr</span><h3>${e.titel}</h3><p>${e.text}</p></div>
+  <div class="act">${e.tickets?`<button class="btn" type="button" data-tix>Tickets</button>`:`<span class="price">${e.preis}</span>`}</div>`;
+  return el;
+}
+function render(){
+  const up=document.getElementById("events");up.innerHTML="";
+  [...thu,SAMPLE].sort((a,b)=>a.datum<b.datum?-1:1).filter(e=>filter==="alle"||e.typ===filter).forEach(e=>up.appendChild(li(e,false)));
+  const pa=document.getElementById("past");pa.innerHTML="";PAST.forEach(e=>pa.appendChild(li(e,true)));
+}
+render();
+document.querySelectorAll("[data-f]").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.f;document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",x===b));render()}));
+const tp=document.getElementById("tickets");
+document.addEventListener("click",ev=>{if(!ev.target.closest("[data-tix]"))return;tp.hidden=false;tp.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"})});
+function tot(){const n=Math.max(1,+document.getElementById("t-anz").value||1),p=+document.getElementById("t-kat").value;document.getElementById("t-total").textContent=`CHF ${n*p}.–`}
+document.getElementById("t-anz").addEventListener("input",tot);document.getElementById("t-kat").addEventListener("change",tot);
+document.getElementById("t-ok").addEventListener("click",()=>{document.getElementById("t-msg").textContent="Vorschau: Hier folgt später die Zahlung (z. B. TWINT oder Karte). Danach kommt das Ticket als QR-Code per E-Mail."});
+document.getElementById("miete").addEventListener("submit",ev=>{
+  ev.preventDefault();const msg=document.getElementById("m-msg");msg.hidden=false;
+  const v=id=>document.getElementById(id).value.trim();
+  if(!v("m-datum")||!v("m-name")||!v("m-mail")){msg.textContent="Bitte Wunschdatum, Name und E-Mail ausfüllen.";return}
+  const extra=[["x-pers","Personal"],["x-rein","Reinigung"],["x-ton","Technik"]].filter(([id])=>document.getElementById(id).checked).map(x=>x[1]);
+  const dt=new Date(v("m-datum")).toLocaleDateString("de-CH",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+  msg.textContent=`${v("m-art")} am ${dt} (${v("m-zeit").toLowerCase()}), ${v("m-pers")} Personen${extra.length?", mit "+extra.join(", "):""}. In der fertigen Website geht die Anfrage direkt an Patricia Jagodic.`;
+});
+</script>
+</body></html>
