@@ -24,7 +24,7 @@ Wer hier mit Claude Code arbeitet, ist meist keine Programmiererin. Deshalb:
 - Immer hell (weiss und türkis), kein Dunkelmodus – so gewünscht (Okt. 2026).
 
 ## Wichtige Fakten (nicht erfinden, nur ändern, wenn die Nutzerin es sagt)
-- Adresse: St.Gallerstrasse 13, 9230 Flawil · Telefon +41 79 224 82 88
+- Adresse: St.Gallerstrasse 13, 9230 Flawil (die Nummer 079 224 82 88 wurde entfernt, nicht wieder einsetzen)
 - Vermietung: Patricia Jagodic, 078 903 07 59, info@kulturpunkt-flawil.ch
 - Jeden Donnerstag ab 17 Uhr offen, Eintritt frei
 
