@@ -159,70 +159,10 @@ footer a{color:var(--paper)}
   </section>
 
   <section class="band" id="mieten" aria-labelledby="miet-t">
-    <div class="wrap room">
-      <div>
-        <p class="label">Vermietung</p>
-        <h2 id="miet-t" class="big">Der Kulturpunkt für Ihren Anlass</h2>
-        <p>Frisch renoviert und zu moderaten Preisen. Der Erlös fliesst ins Kulturbudget des Vereins.</p>
-        <div class="keys">
-          <div><b>100</b><span>Personen im Konzertsaal</span></div>
-          <div><b>69 m²</b><span>Saal + 9 m² Bühne</span></div>
-          <div><b>60 m²</b><span>Aussenbereich</span></div>
-        </div>
-        <div class="tbl">
-          <table>
-            <thead><tr><th>Raum</th><th>Fläche</th></tr></thead>
-            <tbody>
-              <tr><td>Eingang &amp; Bar</td><td>29 m²</td></tr>
-              <tr><td>Konzertsaal</td><td>69 m²</td></tr>
-              <tr><td>Bühne</td><td>9.25 m²</td></tr>
-              <tr><td>Galerie</td><td>18 m²</td></tr>
-              <tr><td>Dachgeschoss mit kleiner Küche</td><td>47 m²</td></tr>
-              <tr><td>Foyer &amp; Toiletten</td><td>13 m²</td></tr>
-              <tr><td>Aussenbereich</td><td>60 m²</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p style="margin-top:18px"><strong>Ausstattung:</strong> Ton- und Konzertanlage, Beamer und Leinwand, Funkmikrofon, Lichtanlage, Bar mit Kühlbuffet und Geschirrspüler, Tische und Lounge-Möbel. Auf Wunsch Personal und Reinigung.</p>
-        <ul class="uses" aria-label="Geeignet für">
-          <li>Hochzeiten</li><li>Geburtstage</li><li>Sitzungen</li><li>Seminare &amp; Kurse</li><li>Vorträge</li><li>Konzerte</li><li>Aufnahmen</li><li>Firmenanlässe</li><li>Apéros</li><li>Bandproben</li>
-        </ul>
-        <p style="margin-top:18px"><a href="https://360.swiss360-media.ch/tours/29TFb1s3U_PH?disable=sound%2Crequest%2Ccontrols%2Cleadgen%2Cfloorplan">360°-Rundgang öffnen ↗</a></p>
-      </div>
-
-      <div class="panel" style="margin-top:0">
-        <h3>Verfügbarkeit anfragen</h3>
-        <form id="miete" novalidate>
-          <div class="row">
-            <div class="field"><label for="m-datum">Wunschdatum</label><input id="m-datum" type="date" required></div>
-            <div class="field"><label for="m-zeit">Zeitraum</label>
-              <select id="m-zeit"><option>Nachmittag</option><option>Abend</option><option>Ganzer Tag</option><option>Wochenende</option></select></div>
-          </div>
-          <div class="row">
-            <div class="field"><label for="m-art">Anlass</label>
-              <select id="m-art"><option>Private Feier</option><option>Hochzeit</option><option>Sitzung / Seminar</option><option>Konzert / Aufnahme</option><option>Firmenanlass</option><option>Anderes</option></select></div>
-            <div class="field"><label for="m-pers">Personen</label><input id="m-pers" type="number" min="1" max="100" value="40"></div>
-          </div>
-          <fieldset style="border:0;padding:0;margin:0;display:grid;gap:6px">
-            <legend class="field" style="font-weight:700;font-size:.92rem;padding:0;margin-bottom:6px">Zusätzlich gewünscht</legend>
-            <label><input type="checkbox" id="x-pers" style="width:auto"> Personal</label>
-            <label><input type="checkbox" id="x-rein" style="width:auto"> Reinigung</label>
-            <label><input type="checkbox" id="x-ton" style="width:auto"> Ton- und Lichttechnik</label>
-          </fieldset>
-          <div class="row">
-            <div class="field"><label for="m-name">Name</label><input id="m-name" autocomplete="name" required></div>
-            <div class="field"><label for="m-mail">E-Mail</label><input id="m-mail" type="email" autocomplete="email" required></div>
-          </div>
-          <div class="field"><label for="m-text">Bemerkungen</label><textarea id="m-text"></textarea></div>
-          <button class="btn" type="submit">Anfrage per E-Mail senden</button>
-          <p class="note" id="m-msg" hidden></p>
-        </form>
-        <div class="person">
-          <span class="label">Ansprechperson Vermietung</span>
-          <strong>Patricia Jagodic</strong>
-          <span>078 903 07 59 · info@kulturpunkt-flawil.ch</span>
-        </div>
-      </div>
+    <div class="wrap">
+      <p class="label">Vermietung</p>
+      <h2 id="miet-t" class="big">vermietung</h2>
+      <p class="notice" style="margin-top:24px"><strong>Dieser Bereich ist im Aufbau.</strong></p>
     </div>
   </section>
 
@@ -295,15 +235,5 @@ function render(){
 }
 render();
 document.querySelectorAll("[data-f]").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.f;document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",x===b));render()}));
-document.getElementById("miete").addEventListener("submit",ev=>{
-  ev.preventDefault();const msg=document.getElementById("m-msg");msg.hidden=false;
-  const v=id=>document.getElementById(id).value.trim();
-  if(!v("m-datum")||!v("m-name")||!v("m-mail")){msg.textContent="Bitte Wunschdatum, Name und E-Mail ausfüllen.";return}
-  const extra=[["x-pers","Personal"],["x-rein","Reinigung"],["x-ton","Technik"]].filter(([id])=>document.getElementById(id).checked).map(x=>x[1]);
-  const dt=new Date(v("m-datum")).toLocaleDateString("de-CH",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
-  const body=`Anlass: ${v("m-art")}\nWunschdatum: ${dt} (${v("m-zeit")})\nPersonen: ${v("m-pers")}\nZusätzlich: ${extra.join(", ")||"–"}\n\n${v("m-text")}\n\n${v("m-name")}\n${v("m-mail")}`;
-  location.href="mailto:info@kulturpunkt-flawil.ch?subject="+encodeURIComponent("Mietanfrage "+v("m-art")+" – "+dt)+"&body="+encodeURIComponent(body);
-  msg.textContent="Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Falls nicht: Bitte schreiben Sie an info@kulturpunkt-flawil.ch oder rufen Sie Patricia Jagodic an, 078 903 07 59.";
-});
 </script>
 </body></html>
