@@ -21,7 +21,7 @@ Wer hier mit Claude Code arbeitet, ist meist keine Programmiererin. Deshalb:
 ## Gestaltung
 - Logofarbe Türkis #0FB3AF (Flächen), dunkleres Türkis #0A7F7C für Buttons und Links.
 - Tropfenform aus dem Logo (runde Ecken, unten links eckig), Kleinschreibung in Überschriften.
-- Hell- und Dunkelmodus beibehalten.
+- Immer hell (weiss und türkis), kein Dunkelmodus – so gewünscht (Okt. 2026).
 
 ## Wichtige Fakten (nicht erfinden, nur ändern, wenn die Nutzerin es sagt)
 - Adresse: St.Gallerstrasse 13, 9230 Flawil · Telefon +41 79 224 82 88

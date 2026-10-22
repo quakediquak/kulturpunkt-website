@@ -10,13 +10,8 @@
   --line:#D6E4E3; --brand:#0FB3AF; --on-brand:#0F2524; --accent:#0A7F7C; --on-accent:#FFFFFF;
   --display:"Nunito", "Arial Rounded MT Bold", system-ui, sans-serif;
   --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#0E1717; --soft:#172323; --ink:#E9F3F2; --muted:#9DB3B1;
-  --line:#263534; --brand:#0FB3AF; --on-brand:#0F2524; --accent:#3FD3CE; --on-accent:#0E1717; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0E1717; --soft:#172323; --ink:#E9F3F2; --muted:#9DB3B1;
-  --line:#263534; --brand:#0FB3AF; --on-brand:#0F2524; --accent:#3FD3CE; --on-accent:#0E1717; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6}
 .wrap{max-width:1140px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
