@@ -19,7 +19,7 @@ Wer hier mit Claude Code arbeitet, ist meist keine Programmiererin. Deshalb:
 - `site/.htaccess` – Umleitungen der alten Drupal-Adressen. Nur mit Grund ändern.
 
 ## Gestaltung
-- Logofarbe Türkis #0FB3AF (Flächen), dunkleres Türkis #0A7F7C für Buttons und Links.
+- Überall dasselbe Türkis wie der Logo-Tropfen: #0FB3AF (Flächen, Buttons, Links, Schrift) – so gewünscht (Okt. 2026). Schrift auf Türkis dunkel (#0F2524).
 - Tropfenform aus dem Logo (runde Ecken, unten links eckig), Kleinschreibung in Überschriften.
 - Immer hell (weiss und türkis), kein Dunkelmodus – so gewünscht (Okt. 2026).
 
