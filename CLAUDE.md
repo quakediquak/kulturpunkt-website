@@ -16,6 +16,7 @@ Wer hier mit Claude Code arbeitet, ist meist keine Programmiererin. Deshalb:
   Kommende Anlässe erscheinen automatisch im Programm, vergangene im Archiv.
   Die offenen Donnerstagabende (Bar ab 17 Uhr) erzeugt die Seite selbst – nicht eintragen.
 - `site/index.html` – Aufbau, Texte, Vermietung (Raumtabelle, Ausstattung), Verein, Kontakt, Farben.
+- `site/bilder/` – Fotos für die Website (verkleinerte Kopien, Originale in ~/Desktop/Bildersammlung). `deploy.sh` lädt sie mit hoch.
 - `site/.htaccess` – Umleitungen der alten Drupal-Adressen. Nur mit Grund ändern.
 
 ## Gestaltung

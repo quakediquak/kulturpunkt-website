@@ -10,8 +10,10 @@ read -s -p "FTP-Passwort für $SFTP_USER: " PW; echo
 NETRC=$(mktemp); chmod 600 "$NETRC"
 printf "machine %s login %s password %s\n" "$SFTP_HOST" "$SFTP_USER" "$PW" > "$NETRC"
 trap 'rm -f "$NETRC"' EXIT
-for f in index.html programm.js .htaccess; do
-  curl -s -S --netrc-file "$NETRC" --ftp-ssl-control --ftp-pasv -T "site/$f" "ftp://$SFTP_HOST/$ZO/$f"
+DATEIEN="index.html programm.js .htaccess"
+for b in site/bilder/*.jpg; do [ -f "$b" ] && DATEIEN="$DATEIEN bilder/$(basename "$b")"; done
+for f in $DATEIEN; do
+  curl -s -S --netrc-file "$NETRC" --ftp-ssl-control --ftp-pasv --ftp-create-dirs -T "site/$f" "ftp://$SFTP_HOST/$ZO/$f"
   echo "  hochgeladen: $f"
 done
 echo "Fertig. Prüfen: https://kulturpunkt-flawil.ch (Cmd+Shift+R)"
