@@ -46,9 +46,7 @@ nav a:hover{border-color:var(--accent)}
 .btn.line{background:transparent;color:var(--ink);border:2px solid var(--ink)}
 
 section.band{padding-block:60px;border-top:1px solid var(--line)}
-.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px}
-.gallery img,.fotos img{display:block;width:100%;height:100%;object-fit:cover;border-radius:24px 24px 24px 0}
-.gallery img{aspect-ratio:3/2}
+.fotos img{display:block;width:100%;height:100%;object-fit:cover;border-radius:24px 24px 24px 0}
 .banner{display:block;width:100%;height:auto;margin-top:24px;border-radius:32px 32px 32px 0}
 .fotos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
 .fotos img{aspect-ratio:3/4}
@@ -108,7 +106,6 @@ footer p{margin:6px 0 0}
 footer a{color:var(--paper)}
 
 @media (max-width:860px){
-  .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
   .hero,.room{grid-template-columns:minmax(0,1fr)}
   .verein{grid-template-columns:minmax(0,1fr)}
   footer .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -152,21 +149,6 @@ footer a{color:var(--paper)}
       <p id="next-thu" style="font-weight:700"></p>
     </div>
   </div>
-
-  <section class="band" id="bilder" aria-label="Bilder vom Kulturpunkt">
-    <div class="wrap">
-      <div class="gallery" style="margin-top:0">
-        <img src="bilder/drinks.jpg" alt="Zwei Drinks mit Zitrone im warmen Licht" loading="lazy">
-        <img src="bilder/kerzenglas.jpg" alt="Brennende Kerze in einem Glas" loading="lazy">
-        <img src="bilder/bar.jpg" alt="Die Bar mit roten Barhockern" loading="lazy">
-        <img src="bilder/tischli-drinks.jpg" alt="Kleine Tische mit Drinks und Kerzen" loading="lazy">
-        <img src="bilder/sicht-von-oben.jpg" alt="Blick von der Galerie auf Bühne und Bar" loading="lazy">
-        <img src="bilder/stuhl-tischli.jpg" alt="Stühle und Tischli bei Kerzenlicht" loading="lazy">
-        <img src="bilder/eingang.jpg" alt="Eingang mit Sitzecke und Treppe" loading="lazy">
-        <img src="bilder/kerze-gruen.jpg" alt="Kerze mit grünen Blättern" loading="lazy">
-      </div>
-    </div>
-  </section>
 
   <section class="band" id="programm" aria-labelledby="prog-t">
     <div class="wrap">
