@@ -31,7 +31,7 @@ nav{display:flex;gap:4px 20px;flex-wrap:wrap;margin-left:auto}
 nav a{color:var(--ink);text-decoration:none;font-weight:700;padding-block:4px;border-bottom:2px solid transparent}
 nav a:hover{border-color:var(--accent)}
 
-.hero{padding-block:48px 40px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:end}
+.hero{padding-block:48px 40px}
 .hero h1{font-size:clamp(3.4rem,10vw,7.4rem);font-weight:900;letter-spacing:-.045em;line-height:.95}
 .hero h1 em{font-style:normal;color:var(--accent)}
 .hero .sub{font-size:1.2rem;max-width:34ch;margin:18px 0 0}
@@ -143,12 +143,6 @@ footer a{color:var(--paper)}
       <p class="label">St.Gallerstrasse 13 · Flawil</p>
       <h1>klein<br>aber <em>oho!</em></h1>
     </div>
-    <div class="open">
-      <span class="label">Jeden Donnerstag</span>
-      <h2>bar offen ab 17 uhr</h2>
-      <p>Ankommen, etwas trinken, Leute treffen. Eintritt frei.</p>
-      <p id="next-thu" style="font-weight:700"></p>
-    </div>
   </div>
 
   <section class="band" id="programm" aria-labelledby="prog-t">
@@ -214,7 +208,6 @@ const now=new Date();now.setHours(0,0,0,0);
 // Kommende Donnerstage (offener Abend, laut bisheriger Website jede Woche)
 const thu=[];const d=new Date(now);while(d.getDay()!==4)d.setDate(d.getDate()+1);
 for(let i=0;i<3;i++){thu.push({typ:"bar",datum:iso(d),zeit:"17:00",titel:"Herzlich willkommen!",text:"Offener Abend an der Bar",preis:"Eintritt frei"});d.setDate(d.getDate()+7)}
-document.getElementById("next-thu").textContent="Nächstes Mal: Donnerstag, "+new Date(thu[0].datum).toLocaleDateString("de-CH",{day:"numeric",month:"long"});
 document.getElementById("prog-thu").textContent="Donnerstag, "+new Date(thu[0].datum).toLocaleDateString("de-CH",{day:"numeric",month:"long"})+" · 17.00 – 21.00 Uhr";
 const HEUTE=iso(now);
 const DATEN=(typeof PROGRAMM!=="undefined"?PROGRAMM:[]);
