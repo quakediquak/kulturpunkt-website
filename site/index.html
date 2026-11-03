@@ -156,7 +156,7 @@ footer a{color:var(--paper)}
       <h2 id="prog-t" class="big">programm</h2>
       <p class="notice" style="margin-top:24px"><strong>Dieser Bereich ist im Aufbau.</strong></p>
       <div class="notice" style="background:var(--brand);border-color:var(--brand);max-width:none;margin-top:16px">
-        <span class="label" style="color:inherit;font-size:1.1rem" id="prog-thu">Donnerstag · ab 17.00 Uhr</span>
+        <span class="label" style="color:inherit;font-size:1.1rem" id="prog-thu">Donnerstag · 17.00 – 21.00 Uhr</span>
         <h3 style="font-size:2rem;margin:6px 0 0">bar offen</h3>
       </div>
       <div class="notice" style="background:var(--brand);border-color:var(--brand);max-width:none;margin-top:16px">
@@ -215,7 +215,7 @@ const now=new Date();now.setHours(0,0,0,0);
 const thu=[];const d=new Date(now);while(d.getDay()!==4)d.setDate(d.getDate()+1);
 for(let i=0;i<3;i++){thu.push({typ:"bar",datum:iso(d),zeit:"17:00",titel:"Herzlich willkommen!",text:"Offener Abend an der Bar",preis:"Eintritt frei"});d.setDate(d.getDate()+7)}
 document.getElementById("next-thu").textContent="Nächstes Mal: Donnerstag, "+new Date(thu[0].datum).toLocaleDateString("de-CH",{day:"numeric",month:"long"});
-document.getElementById("prog-thu").textContent="Donnerstag, "+new Date(thu[0].datum).toLocaleDateString("de-CH",{day:"numeric",month:"long"})+" · ab 17.00 Uhr";
+document.getElementById("prog-thu").textContent="Donnerstag, "+new Date(thu[0].datum).toLocaleDateString("de-CH",{day:"numeric",month:"long"})+" · 17.00 – 21.00 Uhr";
 const HEUTE=iso(now);
 const DATEN=(typeof PROGRAMM!=="undefined"?PROGRAMM:[]);
 const PAST=DATEN.filter(e=>e.datum<HEUTE).sort((a,b)=>a.datum<b.datum?1:-1);
