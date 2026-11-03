@@ -22,7 +22,7 @@ Wer hier mit Claude Code arbeitet, ist meist keine Programmiererin. Deshalb:
 
 ## Gestaltung
 - Überall dasselbe Türkis wie der Logo-Tropfen: #0FB3AF (Flächen, Buttons, Links, Schrift) – so gewünscht (Okt. 2026). Schrift auf Türkis dunkel (#0F2524).
-- Tropfenform aus dem Logo (runde Ecken, unten links eckig), Kleinschreibung in Überschriften.
+- Tropfenform aus dem Logo (runde Ecken, unten links eckig). Abschnitts-Überschriften und Slogan: Textschrift fett, GROSSBUCHSTABEN mit Buchstabenabstand (wie Datumszeilen) – so gewünscht (Nov. 2026).
 - Immer hell, kein Dunkelmodus. Hintergrund angenehmes Grau #D5D7D6 – so gewünscht (Nov. 2026).
 
 ## Wichtige Fakten (nicht erfinden, nur ändern, wenn die Nutzerin es sagt)
