@@ -47,6 +47,9 @@ nav a:hover{border-color:var(--accent)}
 
 section.band{padding-block:60px;border-top:1px solid var(--line)}
 .fotos img{display:block;width:100%;height:100%;object-fit:cover;border-radius:0}
+.mehr{margin-top:12px}
+.mehr summary{cursor:pointer;font-weight:700;font-size:1.1rem}
+.mehr p{margin:8px 0 0;max-width:60ch}
 .slogan{font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink);margin:0}
 .banner{display:block;width:100%;height:auto;margin-top:24px;border-radius:0}
 .fotos{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:12px}
@@ -157,8 +160,12 @@ footer .osm{display:block;margin-top:4px;font-size:.75rem;opacity:.7}
         <h3 style="font-size:2rem;margin:6px 0 0">bar offen</h3>
       </div>
       <div class="notice" style="background:var(--brand);border-color:var(--brand);max-width:none;margin-top:16px">
-        <span class="label" style="color:inherit;font-size:1.1rem">Freitag, 6. November · 14.00 – 17.00 Uhr</span>
-        <h3 style="font-size:2rem;margin:6px 0 0">bunt im kulti</h3>
+        <span class="label" style="color:inherit;font-size:1.1rem" id="prog-fri">Freitag · 14.00 – 17.00 Uhr</span>
+        <h3 style="font-size:2rem;margin:6px 0 0">bunt im kulti – offener freitag für alle</h3>
+        <details class="mehr">
+          <summary>Begegnung!</summary>
+          <p>Jeden Freitagnachmittag ist der Kulturpunkt ein offener Ort für alle aus Flawil, egal ob jung oder alt, egal welcher Herkunft. Jedes Mal mit einem anderen Thema, zum Beispiel etwas Kreatives, und zum Schluss gibt es ein feines Zvieri. Hauptsache bunt!</p>
+        </details>
       </div>
       <ul class="events" id="events" hidden></ul>
 
@@ -214,6 +221,8 @@ const now=new Date();now.setHours(0,0,0,0);
 const thu=[];const d=new Date(now);while(d.getDay()!==4)d.setDate(d.getDate()+1);
 for(let i=0;i<3;i++){thu.push({typ:"bar",datum:iso(d),zeit:"17:00",titel:"Herzlich willkommen!",text:"Offener Abend an der Bar",preis:"Eintritt frei"});d.setDate(d.getDate()+7)}
 document.getElementById("prog-thu").textContent="Donnerstag, "+new Date(thu[0].datum).toLocaleDateString("de-CH",{day:"numeric",month:"long"})+" · 17.00 – 21.00 Uhr";
+const fr=new Date(now);while(fr.getDay()!==5)fr.setDate(fr.getDate()+1);
+document.getElementById("prog-fri").textContent="Freitag, "+fr.toLocaleDateString("de-CH",{day:"numeric",month:"long"})+" · 14.00 – 17.00 Uhr";
 const HEUTE=iso(now);
 const DATEN=(typeof PROGRAMM!=="undefined"?PROGRAMM:[]);
 const PAST=DATEN.filter(e=>e.datum<HEUTE).sort((a,b)=>a.datum<b.datum?1:-1);

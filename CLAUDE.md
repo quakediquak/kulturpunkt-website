@@ -29,6 +29,7 @@ Wer hier mit Claude Code arbeitet, ist meist keine Programmiererin. Deshalb:
 - Adresse: St.Gallerstrasse 13, 9230 Flawil (die Nummer 079 224 82 88 wurde entfernt, nicht wieder einsetzen)
 - Vermietung: Patricia Jagodic, 078 903 07 59, info@kulturpunkt-flawil.ch
 - Jeden Donnerstag ab 17 Uhr offen, Eintritt frei
+- Jeden Freitag 14.00 – 17.00 Uhr «bunt im kulti – offener Freitag für alle» (Datum stellt die Seite selbst ein)
 
 ## Technik
 - Statische Seite ohne Datenbank. Hosting: hosttech Webhosting mit Plesk, FTP 181.hosttech.eu, Webordner `web`, kein SSH.
