@@ -11,7 +11,7 @@ NETRC=$(mktemp); chmod 600 "$NETRC"
 printf "machine %s login %s password %s\n" "$SFTP_HOST" "$SFTP_USER" "$PW" > "$NETRC"
 trap 'rm -f "$NETRC"' EXIT
 DATEIEN="index.html programm.js .htaccess"
-for b in site/bilder/*.jpg; do [ -f "$b" ] && DATEIEN="$DATEIEN bilder/$(basename "$b")"; done
+for b in site/bilder/*.jpg site/bilder/*.svg; do [ -f "$b" ] && DATEIEN="$DATEIEN bilder/$(basename "$b")"; done
 for b in site/dokumente/*.pdf; do [ -f "$b" ] && DATEIEN="$DATEIEN dokumente/$(basename "$b")"; done
 for f in $DATEIEN; do
   curl -s -S --netrc-file "$NETRC" --ftp-ssl-control --ftp-pasv --ftp-create-dirs -T "site/$f" "ftp://$SFTP_HOST/$ZO/$f"
