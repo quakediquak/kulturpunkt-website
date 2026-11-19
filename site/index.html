@@ -52,6 +52,7 @@ section.band{padding-block:60px;border-top:1px solid var(--line)}
 .mehr{margin-top:12px}
 .mehr summary{cursor:pointer;font-weight:700;font-size:1.1rem}
 .mehr p{margin:8px 0 0;max-width:60ch}
+.mehr ul{margin:8px 0 0;padding-left:20px;max-width:60ch}
 .partner{background:var(--paper);padding:20px 24px;margin-top:16px}
 .partner .logos{display:flex;flex-wrap:wrap;align-items:center;gap:20px 48px;margin:12px 0 0}
 .partner .l-kip{height:64px;width:auto;display:block}
@@ -188,6 +189,22 @@ footer .osm{display:block;margin-top:4px;font-size:.75rem;opacity:.7}
           </div>
         </details>
       </div>
+      <div class="notice anlass" data-bis="2026-11-22" style="background:var(--brand);border-color:var(--brand);max-width:none;margin-top:16px">
+        <img class="l-bunt" src="bilder/logo-buntruum.png" alt="Buntruum">
+        <span class="label" style="color:inherit;font-size:1.1rem">Sonntag, 22. November · 14.00 – 18.00 Uhr</span>
+        <h3 style="font-size:2rem;margin:6px 0 0">buntruum – ein treff für alle</h3>
+        <details class="mehr">
+          <summary>Herzlich willkommen!</summary>
+          <p>Für Familien, Einzelpersonen, Neugierige, Neuankömmlinge und alle, die Lust auf Begegnung, Austausch und ein paar gemütliche Stunden haben.</p>
+          <ul>
+            <li><strong>Spiele:</strong> gemeinsam spielen, lachen und sich kennenlernen</li>
+            <li><strong>Guetzli machen:</strong> für Gross und Klein, bunt und kreativ</li>
+            <li><strong>Tee &amp; Gespräche:</strong> gemütlich sitzen und miteinander reden</li>
+            <li><strong>Buffet zum Teilen:</strong> interkulturelle Teilete – bring gern etwas mit!</li>
+          </ul>
+          <p><a href="dokumente/buntruum-22-11-2026.pdf" target="_blank" rel="noopener" style="color:inherit;font-weight:700">Plakat ansehen (PDF) ↗</a></p>
+        </details>
+      </div>
       <ul class="events" id="events" hidden></ul>
 
     </div>
@@ -249,6 +266,7 @@ const now=new Date();now.setHours(0,0,0,0);
 const thu=[];const d=new Date(now);while(d.getDay()!==4)d.setDate(d.getDate()+1);
 for(let i=0;i<3;i++){thu.push({typ:"bar",datum:iso(d),zeit:"17:00",titel:"Herzlich willkommen!",text:"Offener Abend an der Bar",preis:"Eintritt frei"});d.setDate(d.getDate()+7)}
 document.getElementById("prog-thu").textContent="Donnerstag, "+new Date(thu[0].datum).toLocaleDateString("de-CH",{day:"numeric",month:"long"})+" · 17.00 – 21.00 Uhr";
+document.querySelectorAll(".anlass[data-bis]").forEach(el=>{if(new Date(el.dataset.bis+"T23:59:59")<new Date())el.remove()});
 const fr=new Date(now);while(fr.getDay()!==5)fr.setDate(fr.getDate()+1);
 document.getElementById("prog-fri").textContent="Freitag, "+fr.toLocaleDateString("de-CH",{day:"numeric",month:"long"})+" · 14.00 – 17.00 Uhr";
 const HEUTE=iso(now);
